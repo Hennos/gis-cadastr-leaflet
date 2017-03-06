@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import L from 'leaflet';
 
@@ -6,15 +7,15 @@ import './Map.css';
 
 let config = {};
 config.params = {
-  center: [51.505, -0.09],
-  zoom: 13
+  center: [59.938, 30.31],
+  zoom: 10
 };
 config.tileLayer = {
   uri: "https://api.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}",
   params: {
-    attribution: "Yo-ho-ho!",
+    attribution: '&copy; Mapbox Street contributors',
     maxZoom: 18,
-    id: 'mapbox.pirates'
+    id: 'mapbox.streets'
   }
 };
 
@@ -57,8 +58,8 @@ class Map extends Component {
   getData() {
     return fetch("http://127.0.0.1:1337/echo?token")
       .then((response) => response.json())
-      .then((gettingData) => {
-        config.tileLayer.params.accessToken = gettingData.accessToken;
+      .then((data) => {
+        config.tileLayer.params.accessToken = data.accessToken;
       });
   }
 
@@ -69,4 +70,12 @@ class Map extends Component {
   }
 }
 
-export default Map;
+const mapStateProps = (state) => {
+  return {};
+};
+
+const mapDispatchActions = (dispatch) => {
+  return {};
+};
+
+export default connect(mapStateProps, mapDispatchActions)(Map);
