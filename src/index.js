@@ -2,15 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware  from 'redux-saga';
 import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
 
 import Reducers from './reducers/index.js';
+import rootSaga from './sagas/index.js'
 
 import App from './components/App';
 import './index.css';
 
-let store = createStore(Reducers, applyMiddleware(thunk));
+const sagaMiddleware = createSagaMiddleware();
+let store = createStore(
+  Reducers,
+  applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
   <Provider store={store}>
