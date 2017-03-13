@@ -75,9 +75,9 @@ class Map extends Component {
 
   render() {
     const {accessToken} = this.props;
-    return (
-      <div>{(accessToken) && <MapView token={accessToken}/>}</div>
-    )
+    return (accessToken)
+      ? <MapView token={accessToken}/>
+      : null;
   }
 }
 
