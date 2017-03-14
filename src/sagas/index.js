@@ -1,7 +1,7 @@
-import {watchFetchMapData} from './map.js'
+import {watchRequestMapData} from './map.js'
 
 export default function* rootSaga() {
   yield [
-    watchFetchMapData()
+    watchRequestMapData()
   ]
 }

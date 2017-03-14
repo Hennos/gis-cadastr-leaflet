@@ -15,6 +15,20 @@ export const setAccessToken = (accessToken) => {
   }
 };
 
+export const requestGeoJSON = (pattern) => {
+  return {
+    type: events.requestGeoJSON,
+    pattern: pattern
+  }
+};
+
+export const setGeoJSON = (data) => {
+  return {
+    type: events.setGeoJSON,
+    data: data
+  }
+};
+
 export const signalFailedRequest = (error) => {
   return {
     type: events.signalFailedRequest,
