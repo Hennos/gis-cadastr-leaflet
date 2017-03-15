@@ -1,6 +1,8 @@
 import {events, map} from "../constants/map.js";
 import {state as initialState} from "../states/map.js";
 
+import Immutable from 'immutable';
+
 let mapRoot = new Map([
   [events.setAccessToken, handleSetAccessToken],
   [events.setGeoJSON, handleSetGeoJSON]
@@ -11,12 +13,8 @@ function handleSetAccessToken(state, action) {
 }
 
 function handleSetGeoJSON(state, action) {
-  if (Array.isArray(action.data)) {
-    return state
-      .set(map.mapData, action.data.map((elem) => JSON.stringify(elem)))
-  } else {
-    return state;
-  }
+  return state
+    .set(map.mapData, Immutable.Map(action.data));
 }
 
 const Reducer = (state = initialState, action) => {
