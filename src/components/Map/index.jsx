@@ -7,16 +7,9 @@ import {
   requestGeoJSON
 } from '../../actions/map.js';
 
-import Button from '../Button/index.jsx';
 import MapView from '../MapView/index.jsx';
 
 class Map extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onRequestGeoData = this.onRequestGeoData.bind(this);
-  }
-
   componentDidMount() {
     this.props.requestAccessToken();
   }
@@ -29,7 +22,6 @@ class Map extends Component {
     const {accessToken} = this.props;
     return (
       <div className="map">
-        <Button onClick={this.onRequestGeoData}/>
         {(accessToken) ? <MapView token={accessToken}/> : null}
       </div>
     )
