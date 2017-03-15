@@ -1,6 +1,8 @@
 import React from 'react';
 
+import './Button.css';
+
 const Button = ({onClick}) =>
-  <button onClick={onClick}>Жмяк</button>;
+  <button className="default-btn" onClick={onClick}>Жмяк</button>;
 
 export default Button;
