@@ -11,18 +11,19 @@ import MapView from '../MapView/index.jsx';
 
 class Map extends Component {
   componentDidMount() {
-    this.props.requestAccessToken();
+    this.getInitialData();
   }
 
-  onRequestGeoData() {
-    this.props.requestGeoJSON({mark: true})
+  getInitialData() {
+    this.props.requestAccessToken();
+    this.props.requestGeoJSON();
   }
 
   render() {
-    const {accessToken} = this.props;
+    const {accessToken, mapData} = this.props;
     return (
       <div className="map">
-        {(accessToken) ? <MapView token={accessToken}/> : null}
+        {(accessToken) ? <MapView token={accessToken} data={mapData}/> : null}
       </div>
     )
   }
@@ -30,7 +31,8 @@ class Map extends Component {
 
 const mapStateProps = (state) => {
   return {
-    accessToken: state.map.get(mapFields.accessToken)
+    accessToken: state.map.get(mapFields.accessToken),
+    mapData: state.map.get(mapFields.mapData).toArray()
   };
 };
 

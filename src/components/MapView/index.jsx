@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 import L from 'leaflet';
-
-import {map as mapFields} from '../../constants/map';
 
 import './MapView.css';
 
@@ -25,6 +22,13 @@ class MapView extends Component {
     }
   }
 
+  componentWillUpdate(nextProps) {
+    if (!(Array.isArray(nextProps.data) && nextProps.data.length)) {
+      return;
+    }
+    L.geoJSON(nextProps.data).addTo(this.state.map);
+  }
+
   componentWillUnmount() {
     this.state.map.remove();
   }
@@ -32,7 +36,7 @@ class MapView extends Component {
   getMapConfig() {
     let config = {};
     config.params = {
-      center: [59.938, 30.31],
+      center: [59.939095, 30.315868],
       zoom: 10
     };
     config.tileLayer = {
@@ -67,10 +71,4 @@ class MapView extends Component {
   }
 }
 
-const mapStateProps = (state) => {
-  return {
-    mapData: state.map.get(mapFields.mapData)
-  };
-};
-
-export default connect(mapStateProps)(MapView);
+export default MapView;
