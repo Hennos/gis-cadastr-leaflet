@@ -3,6 +3,7 @@ export const events = Object.freeze({
   setAccessToken: "@@map/SET_ACCESS_TOKEN",
 
   requestGeoJSON: "@@map/REQUEST_GEO_JSON",
+  changeGeoJSON: "@@map/SEND_GEO_JSON",
   setGeoJSON: "@@map/SET_GEO_JSON",
 
   signalFailedRequest: "@@map/FAILED_REQUEST"

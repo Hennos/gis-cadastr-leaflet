@@ -5,11 +5,11 @@ function arrayToMap(array, key, functor) {
   if (!Object.is(typeof key, 'string')) {
     return null;
   }
-  return array
-    .reduce((prev, cur) => {
+  return array.reduce(
+    (prev, cur) => {
       if (cur.hasOwnProperty(key)) {
         prev[cur[key]] =
-          (typeof functor === 'function') ? functor(cur) : cur;
+          Object.is(typeof functor, 'function') ? functor(cur) : cur;
       }
       return prev;
     }, {});

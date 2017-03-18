@@ -22,6 +22,13 @@ export const requestGeoJSON = (pattern) => {
   }
 };
 
+export const changeGeoJSON = (geoJSON) => {
+  return {
+    type: events.changeGeoJSON,
+    data: geoJSON
+  }
+};
+
 export const setGeoJSON = (data) => {
   return {
     type: events.setGeoJSON,
