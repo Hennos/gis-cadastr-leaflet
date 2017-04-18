@@ -51,7 +51,10 @@ class Filter extends React.Component {
 Filter.propTypes = {
   className: PropTypes.string,
   description: PropTypes.string.isRequired,
-  options: PropTypes.array.isRequired,
+  options: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object
+  ]).isRequired,
   type: PropTypes.oneOf(Object.keys(mapFilters)).isRequired
 };
 
