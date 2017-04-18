@@ -1,10 +1,17 @@
 import React from 'react';
 
-import Map from './Map';
+import Header from './Header';
+import Navigation from './Navigation';
+import Footer from './Footer';
+
+import GisArea from './GisArea';
 
 const App = () => (
   <div className="App">
-    <Map />
+    <Header />
+    <Navigation />
+    <GisArea />
+    <Footer />
   </div>
 );
 

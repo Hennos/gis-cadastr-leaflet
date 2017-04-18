@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import L from 'leaflet';
+import 'leaflet.pm';
 
 import './MapView.css';
+import 'leaflet.pm/dist/leaflet.pm.css';
 
 class MapView extends Component {
   constructor(props) {
@@ -10,7 +12,8 @@ class MapView extends Component {
 
     this.state = {
       map: null,
-      tileLayer: null
+      tileLayer: null,
+      dataLayer: null
     };
 
     this._mapNode = null;
@@ -22,11 +25,11 @@ class MapView extends Component {
     }
   }
 
-  componentWillUpdate(nextProps) {
-    if (!(Array.isArray(nextProps.data) && nextProps.data.length)) {
-      return;
+  componentWillReceiveProps(nextProps) {
+    if (Array.isArray(nextProps.data) && nextProps.data.length) {
+      let dataLayer = L.geoJSON(nextProps.data).addTo(this.state.map);
+      this.setState({dataLayer: dataLayer});
     }
-    L.geoJSON(nextProps.data).addTo(this.state.map);
   }
 
   componentWillUnmount() {
@@ -48,6 +51,27 @@ class MapView extends Component {
         accessToken: this.props.token
       }
     };
+    config.pmControls = {
+      position: 'topleft',
+      drawPolygon: true,
+      editPolygon: true,
+      deleteLayer: true
+    };
+    config.drawMode = {
+      snappable: true,
+      snapDistance: 20,
+      hintlineStyle: {
+        color: 'red',
+        dashArray: [5, 5]
+      },
+      cursorMarker: false,
+      finishOnDoubleClick: false
+    };
+    config.editMode = {
+      draggable: true,
+      snappable: true,
+      snapDistance: 20
+    };
     return config;
   }
 
@@ -59,6 +83,10 @@ class MapView extends Component {
     const config = this.getMapConfig();
 
     let map = L.map(id, config.params);
+    map.pm.addControls(config.pmControls);
+
+    map.pm.Draw.enable('Poly', config.drawMode);
+
     const tileLayer = L.tileLayer(config.tileLayer.uri, config.tileLayer.params).addTo(map);
 
     this.setState({map, tileLayer});
@@ -66,7 +94,7 @@ class MapView extends Component {
 
   render() {
     return (
-      <div ref={(node) => this._mapNode = node} id="mapid"/>
+      <div ref={(node) => this._mapNode = node} id="mapid"></div>
     )
   }
 }
