@@ -12,7 +12,6 @@ function SelectionFilter({options, value, onChange}) {
       <SelectionList
         className="blockSearch_selectItem"
         options={options}
-        selected={value}
         onChange={onChange}
       />
     </div>

@@ -3,16 +3,7 @@ import PropTypes from 'prop-types';
 
 import Selection from '../Selection';
 
-function SelectionList({className, options, selected, onChange, ...props}) {
-  function prepareNodes() {
-    return options.map((option) => {
-      const node = Object.assign({}, option);
-      node.checked = !!selected.find((cur) => {
-        return cur === node.name;
-      });
-      return node;
-    });
-  }
+function SelectionList({className, options, onChange, ...props}) {
   function modifyState(select) {
     return (prevSelected) => {
       if (typeof select !== 'string') {
@@ -27,7 +18,7 @@ function SelectionList({className, options, selected, onChange, ...props}) {
   }
   return (
     <div className={"" + (className ? (" " + className) : "")}>
-      {prepareNodes().map((node) => (
+      {options.map((node) => (
         <Selection
           key={node.name}
           onSelect={() => onChange(modifyState(node.name))}
@@ -41,7 +32,6 @@ function SelectionList({className, options, selected, onChange, ...props}) {
 SelectionList.propTypes = {
   className: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object).isRequired,
-  selected: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired
 };
 

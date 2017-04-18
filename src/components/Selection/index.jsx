@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Selection({className, name, label, checked, onSelect, ...props}) {
+function Selection({className, name, label, onSelect, ...props}) {
   return (
     <div className={"" + (className ? (" " + className) : "")}>
-      <input type="checkbox" name={name} onChange={onSelect} checked={checked}/>
+      <input type="checkbox" name={name} onChange={onSelect} />
       <span>{label}</span>
     </div>
   )
