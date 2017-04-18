@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function RangeFilter({options}) {
+function RangeFilter({options, onChange}) {
+  const {unit} = options;
   return (
     <div className="blockSearch_quantity">
       <span>от</span>
-      <input type="text" size="3"/>
+      <input type="text" />
       <span>до</span>
-      <input type="text" size="3"/>
-      <span>{options[0].unit}</span>
+      <input type="text" />
+      <span>{unit}</span>
     </div>
   )
 }

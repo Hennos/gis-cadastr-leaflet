@@ -23,32 +23,32 @@ const filtersConfig = [
     className: "blockSearch_square",
     type: "range",
     description: "Площадь ЗУ",
-    options: [{unit: "м."}]
+    options: {unit: "м."}
   }, {
     className: "blockSearch_gasification",
     type: "range",
     description: "Газоснабжение",
-    options: [{unit: "м."}]
+    options: {unit: "м."}
   }, {
     className: "blockSearch_waterSupply",
     type: "range",
     description: "Водоснабжение",
-    options: [{unit: "м."}]
+    options: {unit: "м."}
   }], [{
     className: "blockSearch_severage",
     type: "range",
     description: "Водоотведение",
-    options: [{unit: "м."}]
+    options: {unit: "м."}
   }, {
     className: "blockSearch_heatSupply",
     type: "range",
     description: "Теплоснабжение",
-    options: [{unit: "м."}]
+    options: {unit: "м."}
   }, {
     className: "blockSearch_electricitySupply",
     type: "range",
     description: "Электроснабжение",
-    options: [{unit: "м."}]
+    options: {unit: "м."}
   }]
 ];
 
